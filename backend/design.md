@@ -2,7 +2,7 @@
 
 ## db design
 
-1. **users** - uID, uName, uMail, uPwd 
+1. **users** - uID, uName, uMail, uPwd, uBalance
 2. **employees** - eID, eName, eMail, ePwd
 3. **parts** - pID, pName, pDesc, pLabour, pStock, pNumber
 4. **inventions** - iID, iName, iCreator, iParts
