@@ -1,0 +1,32 @@
+[
+    {
+        "name": "users",
+        "cols": [
+            {
+                "name": "uID",
+                "dType": "INTEGER",
+                "key": "PRIMARY"
+            },
+            {
+                "name": "uName",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "uMail",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "uPwd",
+                "dType": "BLOB",
+                "key": false
+            },
+            {
+                "name": "uBalance",
+                "dType": "INTEGER",
+                "key": false
+            }
+        ]
+    }
+]
