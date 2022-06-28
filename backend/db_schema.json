@@ -26,6 +26,141 @@
                 "name": "uBalance",
                 "dType": "INTEGER",
                 "key": false
+            },
+            {
+                "name": "verified",
+                "dType": "INTEGER",
+                "key": false
+            }
+        ]
+    },
+    {
+        "name": "employees",
+        "cols": [
+            {
+                "name": "eID",
+                "dType": "INTEGER",
+                "key": "PRIMARY"
+            },
+            {
+                "name": "eName",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "eMail",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "ePwd",
+                "dType": "BLOB",
+                "key": false
+            }
+        ]
+    },
+    {
+        "name": "parts",
+        "cols": [
+            {
+                "name": "pID",
+                "dType": "INTEGER",
+                "key": "PRIMARY"
+            },
+            {
+                "name": "pName",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "pDesc",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "pLabour",
+                "dType": "INTEGER",
+                "key": false
+            },
+            {
+                "name": "pStock",
+                "dType": "INTEGER",
+                "key": false
+            },
+            {
+                "name": "pNumber",
+                "dType": "TEXT",
+                "key": false
+            }
+        ]
+    },
+    {
+        "name": "inventions",
+        "cols": [
+            {
+                "name": "iID",
+                "dType": "INTEGER",
+                "key": "PRIMARY"
+            },
+            {
+                "name": "iName",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "iCreator",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "iParts",
+                "dType": "BLOB",
+                "key": false
+            }
+        ]
+    },
+    {
+        "name": "analytics",
+        "cols": [
+            {
+                "name": "aID",
+                "dType": "INTEGER",
+                "key": "PRIMARY"
+            },
+            {
+                "name": "type",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "name",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "numSold",
+                "dType": "INTEGER",
+                "key": false
+            }
+        ]
+    },
+    {
+        "name": "carts",
+        "cols": [
+            {
+                "name": "cID",
+                "dType": "INTEGER",
+                "key": "PRIMARY"
+            },
+            {
+                "name": "uID",
+                "dType": "INTEGER",
+                "key": false
+            },
+            {
+                "name": "iID",
+                "dType": "INTEGER",
+                "key": false
             }
         ]
     }
