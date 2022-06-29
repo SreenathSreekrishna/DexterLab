@@ -28,7 +28,7 @@
                 "key": false
             },
             {
-                "name": "verified",
+                "name": "uVerified",
                 "dType": "INTEGER",
                 "key": false
             }
