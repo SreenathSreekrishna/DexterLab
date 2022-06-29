@@ -25,7 +25,7 @@ session cookie will contain encrypted and hashed pwd and uid
 if session cookie is not empty use cookie to authorize
 else use **uMail** and **uPwd** to authorize
 
-3. **/api/verify/<code>** - GET
+3. **/api/verify/\<code>** - GET
 code will be verification code
 find username from code and update verif. status in db
 
