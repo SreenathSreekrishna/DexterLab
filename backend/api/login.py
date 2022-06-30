@@ -29,7 +29,7 @@ def register():
         return jsonify(status='error',msg='Invalid password!')
     
     db = Database(os.environ['DB_NAME'])
-    db.insert('users', [name, mail, pwd, 0])
+    db.insert('users', [name, mail, pwd, 0, 0])
     db.close()
     code = "TODO"
 
@@ -37,6 +37,11 @@ def register():
         'Verification for DexterLabs',
         recipients=[mail]
     )
-    mesg.html = f'<h1>Click <a href="{os.environ["DEPLOY_URL"]}/verify/{code}">here</a> to verify your account</h1>'
+    mesg.html = f'''
+    <h1>
+      Click <a href="{os.environ["DEPLOY_URL"]}/verify/{code}">here</a> to verify your account
+    </h1>
+    <b>Didn't register? DO NOT CLICK THE LINK ABOVE</b>
+    '''
     send(mesg)
     return jsonify(status='sent')
