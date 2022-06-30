@@ -33,7 +33,10 @@ def register():
     pwd = sha256(pwd.encode()).digest()
 
     db = Database(os.environ['DB_NAME'])
-    db.insert('users', [name, mail, pwd, 0, 0])
+    try:
+        db.insert('users', [name, mail, pwd, 0, 0])
+    except sqlite3.Error:
+        return jsonify(status='error', msg='db error')
     db.close()
     encoded = int.from_bytes(pwd, 'big') ^ int(os.environ['SECRET_KEY'], 16)
     code = hex(encoded)[2:].zfill(128)
@@ -66,7 +69,7 @@ def verify(code):
         return jsonify(status='error',msg='code invalid')
 
     try:
-        #update db
+        db.update('users', values=[1], columns=['uVerified'], constraints=['uPwd', pwd])
     except sqlite3.Error:
         return jsonify(status='error',msg='db error')
     db.close()

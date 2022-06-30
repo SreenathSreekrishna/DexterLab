@@ -19,7 +19,7 @@ class Database:
             return self.db.fetchall()
         else:
             self.conn.commit()
-    
+
     def insert(self, table, vals, columns=None):
         if columns==None:
             columns = self.columns[self.tables.index(table)][1:]
