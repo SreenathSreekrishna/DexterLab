@@ -1,5 +1,7 @@
 #login routes
+from hashlib import sha256
 import os
+import sqlite3
 from flask import Blueprint, current_app, jsonify, request
 from db import Database
 from flask_mail import Message, Mail
@@ -28,10 +30,13 @@ def register():
     if any(i in pwd for i in '"\'[{]};'):
         return jsonify(status='error',msg='Invalid password!')
     
+    pwd = sha256(pwd.encode()).digest()
+
     db = Database(os.environ['DB_NAME'])
     db.insert('users', [name, mail, pwd, 0, 0])
     db.close()
-    code = "TODO"
+    encoded = int.from_bytes(pwd, 'big') ^ int(os.environ['SECRET_KEY'], 16)
+    code = hex(encoded)[2:].zfill(128)
 
     mesg = Message(
         'Verification for DexterLabs',
@@ -39,9 +44,30 @@ def register():
     )
     mesg.html = f'''
     <h1>
-      Click <a href="{os.environ["DEPLOY_URL"]}/verify/{code}">here</a> to verify your account
+      Click <a href="{os.environ["DEPLOY_URL"]}/verify?code={code}">here</a> to verify your account
     </h1>
     <b>Didn't register? DO NOT CLICK THE LINK ABOVE</b>
     '''
     send(mesg)
     return jsonify(status='sent')
+
+@login.route('/verify_user/<code>')
+def verify(code):
+    if len(code) != 128:
+        return jsonify(status='error', msg='invalid length')
+    try:
+        pwd = bytes.fromhex(hex(int(code, 16) ^ int(os.environ['SECRET_KEY'], 16))[2:].zfill(128))
+    except ValueError:
+        return jsonify(status='error', msg='code invalid')
+
+    db = Database(os.environ['DB_NAME'])
+    if len(db.select('table', constraints=['uPwd', pwd])):
+        db.close()
+        return jsonify(status='error',msg='code invalid')
+
+    try:
+        #update db
+    except sqlite3.Error:
+        return jsonify(status='error',msg='db error')
+    db.close()
+    return jsonify(status='updated')

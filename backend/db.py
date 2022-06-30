@@ -25,3 +25,7 @@ class Database:
             columns = self.columns[self.tables.index(table)][1:]
         sql = f'INSERT INTO {table}({",".join(columns)}) VALUES ({",".join(["?"]*len(vals))})'
         self.execute(sql, vals)
+    
+    def select(self, table, constraints=False, columns="*"):
+        sql = f'SELECT {",".join(columns)} FROM {table}{f" WHERE {constraints[0]}=?" if constraints else ""}'
+        return self.execute(sql, (constraints[1],) if constraints else ())
