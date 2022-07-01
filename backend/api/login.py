@@ -1,5 +1,5 @@
 #login routes
-from hashlib import sha256
+from hashlib import sha512
 import os
 import sqlite3
 from flask import Blueprint, current_app, jsonify, request
@@ -23,14 +23,14 @@ def register():
     if not pwd:
         return jsonify(status='error',msg='No password!')
     
-    if any(i in name for i in '!@#$%^&*()-_=+[{]}\|;:\'",<.>/?`~'):
+    if any(i in name for i in '!@#$%^&*()-_=+[{]}\\|;:\'",<.>/?`~'):
         return jsonify(status='error',msg='Invalid name!')
-    if any(i in mail for i in '!#$%^&*()=+[{]}\|;:\'",<>/?`~'):
+    if any(i in mail for i in '!#$%^&*()=+[{]}\\|;:\'",<>/?`~'):
         return jsonify(status='error',msg='Invalid email!')
-    if any(i in pwd for i in '"\'[{]};'):
+    if any(i in pwd for i in '\\"\'[{]};'):
         return jsonify(status='error',msg='Invalid password!')
     
-    pwd = sha256(pwd.encode()).digest()
+    pwd = sha512(pwd.encode()).digest()
 
     db = Database(os.environ['DB_NAME'])
     try:
