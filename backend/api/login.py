@@ -69,7 +69,7 @@ def verify(code):
         return jsonify(status='error',msg='code invalid')
 
     try:
-        db.update('users', values=[1], columns=['uVerified'], constraints=['uPwd', pwd])
+        db.update('users', [1], ['uVerified'], constraints=['uPwd', pwd])
     except sqlite3.Error:
         return jsonify(status='error',msg='db error')
     db.close()

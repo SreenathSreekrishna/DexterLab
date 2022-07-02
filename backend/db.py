@@ -29,3 +29,7 @@ class Database:
     def select(self, table, constraints=False, columns="*"):
         sql = f'SELECT {",".join(columns)} FROM {table}{f" WHERE {constraints[0]}=?" if constraints else ""}'
         return self.execute(sql, (constraints[1],) if constraints else ())
+    
+    def update(self, table, columns, values, constraints=False):
+        sql = f'UPDATE {table} SET {",".join([f"{i}=?" for i in columns])}{f" WHERE {constraints[0]}=?" if constraints else ""}'
+        self.execute(sql, values)
