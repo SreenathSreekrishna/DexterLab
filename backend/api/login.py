@@ -74,3 +74,22 @@ def verify(code):
         return jsonify(status='error',msg='db error')
     db.close()
     return jsonify(status='updated')
+
+@login.route('/login')
+def login():
+    mail, pwd = request.form.get('uMail'), request.form.get('uPwd')
+    pwd = sha512(pwd.encode()).digest()
+    db = Database(os.environ['DB_NAME'])
+    db_pwd = db.select('users', constraints=['uMail', mail], columns=['uPwd'])
+    if len(db_pwd) == 0:
+        db.close()
+        return jsonify(status='error', msg='Mail invalid!')
+    if len(db_pwd[0]) != 1:
+        db.close()
+        return jsonify(status='error', msg='db error')
+    if db_pwd[0][0] != pwd:
+        db.close()
+        return jsonify(status='error', msg='Incorrect password!')
+    db.close()
+    #TODO cookie updating thingies
+    return jsonify(status='done')
