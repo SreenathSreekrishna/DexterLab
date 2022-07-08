@@ -11,9 +11,9 @@ const App = (props) => {
   return <Router>
     <Navbar thumbnail={thumb}>
       <div>
-        <span>hello</span>
+        <span link="/register">hello</span>
         <div>
-          <span>amma</span>
+          <span link="/login">amma</span>
           <span>sreenath</span>
           <span>sree</span>
         </div>
@@ -44,8 +44,8 @@ const App = (props) => {
       <Route exact path='/' element={<Home />} />
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
-      <Route path='/blogs' element={<Login />} />
-      <Route path='/sign-up' element={<Register />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
     </Routes>
   </Router>
 }
