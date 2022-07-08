@@ -2,7 +2,7 @@
 from hashlib import sha512
 import os
 import sqlite3
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, jsonify, make_response, request
 from db import Database
 from flask_mail import Message, Mail
 
@@ -64,21 +64,31 @@ def verify(code):
         return jsonify(status='error', msg='code invalid')
 
     db = Database(os.environ['DB_NAME'])
-    if len(db.select('table', constraints=['uPwd', pwd])):
+    if len(db.select('users', constraints=['uPwd', pwd])) == 0:
         db.close()
         return jsonify(status='error',msg='code invalid')
 
     try:
-        db.update('users', [1], ['uVerified'], constraints=['uPwd', pwd])
-    except sqlite3.Error:
+        db.update('users', ['uVerified'], [1], constraints=['uPwd', pwd])
+    except sqlite3.Error as e:
+        print(e)
         return jsonify(status='error',msg='db error')
     db.close()
     return jsonify(status='updated')
 
-@login.route('/login')
-def login():
+@login.route('/login', methods=['POST'])
+def _login():
     mail, pwd = request.form.get('uMail'), request.form.get('uPwd')
-    pwd = sha512(pwd.encode()).digest()
+    if not pwd:
+        enc = request.cookies.get('session').zfill(128)
+        if not enc:
+            return 'No password'
+        pwd = int(enc,16)^int(os.environ['SECRET_KEY'], 16)
+        #get email from pwd TODO
+    else:
+        if not mail:
+            return jsonify(status='error', msg='No email!')
+        pwd = sha512(pwd.encode()).digest()
     db = Database(os.environ['DB_NAME'])
     db_pwd = db.select('users', constraints=['uMail', mail], columns=['uPwd'])
     if len(db_pwd) == 0:
@@ -90,6 +100,9 @@ def login():
     if db_pwd[0][0] != pwd:
         db.close()
         return jsonify(status='error', msg='Incorrect password!')
+    user = db.select('users', constraints=['uMail', mail], columns=['uMail', 'uName', 'uBalance'])
     db.close()
-    #TODO cookie updating thingies
-    return jsonify(status='done')
+    enc = int.from_bytes(pwd, 'big') ^ int(os.environ['SECRET_KEY'], 16)
+    resp = make_response(jsonify(user))
+    resp.set_cookie('session', hex(enc)[2:])
+    return resp

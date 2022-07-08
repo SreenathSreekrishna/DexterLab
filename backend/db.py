@@ -32,4 +32,4 @@ class Database:
     
     def update(self, table, columns, values, constraints=False):
         sql = f'UPDATE {table} SET {",".join([f"{i}=?" for i in columns])}{f" WHERE {constraints[0]}=?" if constraints else ""}'
-        self.execute(sql, values)
+        self.execute(sql, values if not constraints else values+[constraints[1]])
