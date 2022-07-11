@@ -30,12 +30,20 @@ def register():
     if any(i in pwd for i in '\\"\'[{]};'):
         return jsonify(status='error',msg='Invalid password!')
     
-    pwd = sha512(pwd.encode()).digest()
-
     db = Database(os.environ['DB_NAME'])
+    if len(db.select('users', ['uMail', mail])) != 0:
+        db.close()
+        return jsonify(status='error',msg='Email taken!')
+    
+    pwd = sha512(pwd.encode()).digest()
+    if len(db.select('users', ['uPwd', pwd])) != 0:
+        db.close()
+        return jsonify(status='error',msg='Password too common!')
+    
     try:
         db.insert('users', [name, mail, pwd, 0, 0])
     except sqlite3.Error:
+        db.close()
         return jsonify(status='error', msg='db error')
     db.close()
     encoded = int.from_bytes(pwd, 'big') ^ int(os.environ['SECRET_KEY'], 16)
@@ -54,7 +62,7 @@ def register():
     send(mesg)
     return jsonify(status='sent')
 
-@login.route('/verify_user/<code>')
+@login.route('/verify/<code>')
 def verify(code):
     if len(code) != 128:
         return jsonify(status='error', msg='invalid length')
@@ -78,18 +86,24 @@ def verify(code):
 
 @login.route('/login', methods=['POST'])
 def _login():
+    db = Database(os.environ['DB_NAME'])
     mail, pwd = request.form.get('uMail'), request.form.get('uPwd')
     if not pwd:
-        enc = request.cookies.get('session').zfill(128)
+        enc = request.cookies.get('session')
         if not enc:
-            return 'No password'
-        pwd = int(enc,16)^int(os.environ['SECRET_KEY'], 16)
-        #get email from pwd TODO
+            return jsonify(status='error', msg='No password')
+        enc = enc.zfill(128)
+        pwd = bytes.fromhex(hex(int(enc,16)^int(os.environ['SECRET_KEY'], 16))[2:].zfill(128))
+        mail = db.select('users', ['uPwd', pwd], ['uMail'])
+        if len(mail)!=1:
+            return jsonify(status='error', msg='db error')
+        if len(mail[0])!=1:
+            return jsonify(status='error', msg='db error')
+        mail = mail[0][0]
     else:
         if not mail:
             return jsonify(status='error', msg='No email!')
         pwd = sha512(pwd.encode()).digest()
-    db = Database(os.environ['DB_NAME'])
     db_pwd = db.select('users', constraints=['uMail', mail], columns=['uPwd'])
     if len(db_pwd) == 0:
         db.close()
@@ -102,6 +116,9 @@ def _login():
         return jsonify(status='error', msg='Incorrect password!')
     user = db.select('users', constraints=['uMail', mail], columns=['uMail', 'uName', 'uBalance'])
     db.close()
+    if len(user) != 1:
+        return jsonify(status='error', msg='db error')
+    user = user[0]
     enc = int.from_bytes(pwd, 'big') ^ int(os.environ['SECRET_KEY'], 16)
     resp = make_response(jsonify(user))
     resp.set_cookie('session', hex(enc)[2:])
