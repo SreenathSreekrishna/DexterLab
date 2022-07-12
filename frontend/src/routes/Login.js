@@ -1,5 +1,10 @@
+import Form from '../Form.js';
+
 const Login = () => {
-    return <h1>Login</h1>;
+    return <Form submit="Login">
+        <div>Email</div>
+        <div>Password</div>
+    </Form>;
 }
 
 export default Login;
