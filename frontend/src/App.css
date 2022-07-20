@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .home {
+        @apply text-gray-300 text-center;
+    }
+    .header {
+        @apply text-[45px] my-7 font-mono uppercase font-bold;
+    }
+    .nav {
+        @apply font-mono font-bold text-2xl;
+    }
+    .notfound {
+        @apply font-mono font-bold text-7xl text-center text-gray-300 mt-20;
+    }
+}

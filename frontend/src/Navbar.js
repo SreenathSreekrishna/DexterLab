@@ -64,7 +64,7 @@ const MobileNavItem = (props) => {
 }
 
 const NavbarDesktop = (props) => {
-  return (<div className="flex text-gray-300/80 text-lg font-medium space-x-4 shadow-2xl text-center bg-sky-300/70 rounded-3xl box-content p-4 h-20">
+  return (<div className="nav flex text-gray-300/80 font-medium space-x-4 shadow-2xl text-center bg-sky-700/30 rounded-3xl box-content p-4 h-20">
       {props.logo && <div className="flex min-w-[10%] bg-sky-700/70 rounded-3xl hover:bg-sky-700 hover:cursor-pointer border-sky-900 border-[2px]">
         <Link to="/" className="flex m-auto h-4/5">
           <img src={props.thumbnail} className="m-auto h-full" alt="" />
@@ -82,13 +82,13 @@ const NavbarMobile = (props) => {
   const handleClick = () => {
     setOpen(!open);
   }
-  return (<div className="text-gray-300/80">
-    <div onClick={handleClick} className="flex space-x-6 shadow-2xl bg-sky-300/70 rounded-3xl box-content p-4 h-20">
+  return (<div className="nav text-gray-300/80">
+    <div onClick={handleClick} className="flex space-x-6 shadow-2xl bg-sky-700/30 rounded-3xl box-content p-4 h-20">
       {open ? 
-      <AiOutlineClose className="m-auto text-black hover:text-gray-600 hover:cursor-pointer relative" size={50} /> :
-      <AiOutlineMenu  className="m-auto text-black hover:text-gray-600 hover:cursor-pointer relative" size={50} /> } 
+      <AiOutlineClose className="m-auto text-black hover:text-gray-600 hover:cursor-pointer relative" size={50} color="#bbb" /> :
+      <AiOutlineMenu  className="m-auto text-black hover:text-gray-600 hover:cursor-pointer relative" size={50} color="#bbb" /> } 
     </div>
-    {open && <div className="space-y-0.5">
+    {open && <div className="space-y-0.5 my-2">
       {props.children.map((child, i) => {
         return <MobileNavItem key={i} index={i} open={whichOpen} setOpen={setWhichOpen} link={child.props.children[0].props.link} listItems={child.props.children[1].props.children}>{child.props.children[0].props.children}</MobileNavItem>;
       })}

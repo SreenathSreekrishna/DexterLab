@@ -6,20 +6,21 @@ import About from './routes/About.js';
 import Contact from './routes/Contact.js';
 import Login from './routes/Login.js';
 import Register from './routes/Register.js';
+import NotFound from './routes/404.js';
 
 const App = (props) => {
   return <Router>
     <Navbar thumbnail={thumb}>
       <div>
-        <span link="/register">hello</span>
+        <span link="/shop">Shop</span>
         <div>
-          <span link="/login">amma</span>
-          <span>sreenath</span>
-          <span>sree</span>
+          <span>Off the shelf inventions</span>
+          <span>Build your own custom invention</span>
+          <span>Shop for parts</span>
         </div>
       </div>
       <div>
-        <span>hello</span>
+        <span>11</span>
         <div>
           <span>third</span>
           <span>third</span>
@@ -46,6 +47,7 @@ const App = (props) => {
       <Route path='/contact' element={<Contact />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </Router>
 }

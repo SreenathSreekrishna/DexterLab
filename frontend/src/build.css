@@ -549,12 +549,59 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.home {
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
+.header {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 45px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nav {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.notfound {
+  margin-top: 5rem;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
 .relative {
   position: relative;
 }
 
 .m-auto {
   margin: auto;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.ml-\[25\%\] {
+  margin-left: 25%;
 }
 
 .box-content {
@@ -593,30 +640,8 @@ video {
   min-width: 0px;
 }
 
-.min-w-fit {
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-}
-
-.min-w-\[4px\] {
-  min-width: 4px;
-}
-
 .min-w-\[10\%\] {
   min-width: 10%;
-}
-
-.min-w-\[50\%\] {
-  min-width: 50%;
-}
-
-.min-w-\[12\%\] {
-  min-width: 12%;
-}
-
-.min-w-\[12\.5\%\] {
-  min-width: 12.5%;
 }
 
 .scale-0 {
@@ -679,8 +704,8 @@ video {
   background-color: rgb(12 74 110 / 0.5);
 }
 
-.bg-sky-300\/70 {
-  background-color: rgb(125 211 252 / 0.7);
+.bg-sky-700\/30 {
+  background-color: rgb(3 105 161 / 0.3);
 }
 
 .p-4 {
@@ -695,8 +720,8 @@ video {
   text-align: center;
 }
 
-.text-lg {
-  font-size: 1.125rem;
+.text-xl {
+  font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
@@ -711,6 +736,11 @@ video {
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-200 {
+  --tw-text-opacity: 1;
+  color: rgb(191 219 254 / var(--tw-text-opacity));
 }
 
 .shadow-2xl {
@@ -746,6 +776,15 @@ video {
 .hover\:text-gray-600:hover {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.hover\:text-blue-200\/70:hover {
+  color: rgb(191 219 254 / 0.7);
+}
+
+.hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .group:hover .group-hover\:scale-100 {
