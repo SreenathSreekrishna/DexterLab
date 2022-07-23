@@ -91,6 +91,11 @@
                 "name": "pNumber",
                 "dType": "TEXT",
                 "key": false
+            },
+            {
+                "name": "pImg",
+                "dType": "BLOB",
+                "key": false
             }
         ]
     },
@@ -114,6 +119,11 @@
             },
             {
                 "name": "iParts",
+                "dType": "BLOB",
+                "key": false
+            },
+            {
+                "name": "iImg",
                 "dType": "BLOB",
                 "key": false
             }
