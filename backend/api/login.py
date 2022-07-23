@@ -91,7 +91,7 @@ def _login():
     if not pwd:
         enc = request.cookies.get('session')
         if not enc:
-            return jsonify(status='error', msg='No password')
+            return jsonify(status='error', msg='No password!')
         enc = enc.zfill(128)
         pwd = bytes.fromhex(hex(int(enc,16)^int(os.environ['SECRET_KEY'], 16))[2:].zfill(128))
         mail = db.select('users', ['uPwd', pwd], ['uMail'])
