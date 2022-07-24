@@ -24,7 +24,7 @@
             },
             {
                 "name": "uBalance",
-                "dType": "INTEGER",
+                "dType": "FLOAT",
                 "key": false
             },
             {
@@ -79,7 +79,12 @@
             },
             {
                 "name": "pLabour",
-                "dType": "INTEGER",
+                "dType": "FLOAT",
+                "key": false
+            },
+            {
+                "name": "pCost",
+                "dType": "FLOAT",
                 "key": false
             },
             {
@@ -109,6 +114,11 @@
             },
             {
                 "name": "iName",
+                "dType": "TEXT",
+                "key": false
+            },
+            {
+                "name": "iDesc",
                 "dType": "TEXT",
                 "key": false
             },

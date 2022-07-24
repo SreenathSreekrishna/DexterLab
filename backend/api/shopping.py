@@ -10,7 +10,7 @@ def add_cash():
     if not amount:
         return jsonify(status='error', msg='No amount specified!')
     try:
-        amount = int(amount)
+        amount = float(amount)
     except ValueError:
         return jsonify(status='error', msg='Amount is not a valid number!')
     
