@@ -3,7 +3,7 @@ from hashlib import sha512
 import os
 import sqlite3
 from flask import Blueprint, current_app, jsonify, make_response, request
-from db import Database
+from app.db import Database
 from flask_mail import Message, Mail
 
 login = Blueprint('login', __name__)

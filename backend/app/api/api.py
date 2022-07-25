@@ -1,7 +1,7 @@
 from flask import Blueprint
-from api.login import login
-from api.shopping import shopping
-from api.products import products
+from app.api.login import login
+from app.api.shopping import shopping
+from app.api.products import products
 
 api = Blueprint('api', __name__, url_prefix='/api')
 api.register_blueprint(login)

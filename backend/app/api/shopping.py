@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from db import Database
+from app.db import Database
 import os
 
 shopping = Blueprint('shopping', __name__)

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, send_file
-from db import Database
+from app.db import Database
 import os
 from io import BytesIO
 

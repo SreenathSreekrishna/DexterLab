@@ -1,3 +1,5 @@
 flask
 flask-mail
+flask-cors
 python-dotenv
+gunicorn

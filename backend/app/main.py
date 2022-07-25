@@ -2,11 +2,11 @@
 import os
 from flask import Flask
 from flask_cors import CORS
-from config import configure, DB_NAME
-from api.api import api
+from app.config import configure, DB_NAME
+from app.api.api import api
 from flask_mail import Mail
 
-if '.env' not in os.listdir():
+if '.env' not in os.listdir('app/'):
     configure(_db=False)
 else:
     if "SECRET_KEY" not in os.environ:
@@ -28,6 +28,3 @@ app.config['MAIL_DEFAULT_SENDER'] = 'dexterlab.website@gmail.com'
 mail = Mail(app)
 
 app.register_blueprint(api)
-
-if __name__ == "__main__":
-    app.run()

@@ -10,12 +10,12 @@ DB_NAME = os.environ['DB_NAME']
 def configure(env=True, _db=True):
     if env:
         key = hex(int.from_bytes(randbytes(64),'big'))[2:].zfill(128)
-        with open('.env', 'a') as f:
+        with open('app/.env', 'a') as f:
             f.write(f'SECRET_KEY={key}\n')
             f.write('PROFIT=10\n')
 
     if _db:
-        with open("db_schema.json") as f:
+        with open("app/db_schema.json") as f:
             tables = load(f)
 
         conn = sqlite3.connect(DB_NAME)
