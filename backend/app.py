@@ -1,6 +1,7 @@
 #CWWebDev
 import os
 from flask import Flask
+from flask_cors import CORS
 from config import configure, DB_NAME
 from api.api import api
 from flask_mail import Mail
@@ -16,6 +17,7 @@ if DB_NAME not in os.listdir():
     configure(env=False)
 
 app = Flask(__name__)
+CORS(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'dexterlab.website@gmail.com'

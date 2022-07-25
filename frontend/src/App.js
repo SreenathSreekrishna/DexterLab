@@ -2,21 +2,20 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from "./Navbar.js";
 import thumb from './logo_thumb.png';
 import Home from './routes/Home.js';
-import About from './routes/About.js';
-import Contact from './routes/Contact.js';
-import Login from './routes/Login.js';
-import Register from './routes/Register.js';
+import Login from './routes/login/Login.js';
+import Register from './routes/login/Register.js';
+import PartShop from './routes/shop/partShop.js';
+import InvShop from './routes/shop/invShop.js';
 import NotFound from './routes/404.js';
 
 const App = (props) => {
   return <Router>
     <Navbar thumbnail={thumb}>
       <div>
-        <span link="/shop">Shop</span>
+        <span>Shop</span>
         <div>
-          <span>Off the shelf inventions</span>
-          <span>Build your own custom invention</span>
-          <span>Shop for parts</span>
+          <span link="/invShop">Off the shelf inventions</span>
+          <span link="/partShop">Shop for parts</span>
         </div>
       </div>
       <div>
@@ -43,10 +42,10 @@ const App = (props) => {
     </Navbar>
     <Routes>
       <Route exact path='/' element={<Home />} />
-      <Route path='/about' element={<About />} />
-      <Route path='/contact' element={<Contact />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/invShop' element={<InvShop />} />
+      <Route path='/partShop' element={<PartShop />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Router>

@@ -12,6 +12,7 @@ def configure(env=True, _db=True):
         key = hex(int.from_bytes(randbytes(64),'big'))[2:].zfill(128)
         with open('.env', 'a') as f:
             f.write(f'SECRET_KEY={key}\n')
+            f.write('PROFIT=10\n')
 
     if _db:
         with open("db_schema.json") as f:

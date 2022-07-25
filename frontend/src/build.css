@@ -549,6 +549,8 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+/*homepage*/
+
 .home {
   text-align: center;
   --tw-text-opacity: 1;
@@ -571,6 +573,48 @@ video {
   font-weight: 700;
 }
 
+.content {
+  width: 100%;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .content {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.content .image img {
+  margin: auto;
+}
+
+.content .image {
+  display: flex;
+}
+
+@media (min-width: 640px) {
+  .content .image {
+    width: 50%;
+  }
+}
+
+.content .text {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
+}
+
+@media (min-width: 640px) {
+  .content .text {
+    width: 50% !important;
+  }
+}
+
+/*404*/
+
 .notfound {
   margin-top: 5rem;
   text-align: center;
@@ -580,6 +624,90 @@ video {
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
+/*parts*/
+
+.partImgDiv {
+  display: flex;
+}
+
+.partImg {
+  margin: auto;
+  max-height: 24rem;
+  max-width: 100%;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.part {
+  margin-top: 1.25rem;
+  margin-right: 1.25rem;
+  border-radius: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 34 34 / var(--tw-bg-opacity));
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
+.partDesc {
+  margin-top: 1rem;
+}
+
+.partDescLine {
+  margin-top: 0.5rem;
+}
+
+.partCost {
+  margin-top: 0.75rem;
+  font-size: 30px;
+}
+
+.partName {
+  font-size: 40px;
+}
+
+.partList {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  padding: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .partList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .partList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.partSearch {
+  display: flex;
+}
+
+.partSearch input {
+  margin: auto;
+  margin-top: 2rem;
+  height: 3.5rem;
+  width: 20rem;
+  border-radius: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 34 34 / var(--tw-bg-opacity));
+  padding: 1rem;
+  font-size: 20px;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
+.partSearch input:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .relative {

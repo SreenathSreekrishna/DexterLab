@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+    /*homepage*/
     .home {
         @apply text-gray-300 text-center;
     }
@@ -12,7 +13,53 @@
     .nav {
         @apply font-mono font-bold text-2xl;
     }
+    .content {
+        @apply sm:flex sm:flex-row-reverse w-full p-4;
+    }
+    .content .image img {
+        @apply m-auto;
+    }
+    .content .image {
+        @apply flex sm:w-1/2;
+    }
+    .content .text {
+        @apply text-4xl font-mono my-10 sm:w-1/2 !important;
+    }
+
+    /*404*/
     .notfound {
         @apply font-mono font-bold text-7xl text-center text-gray-300 mt-20;
+    }
+
+    /*parts*/
+    .partImgDiv {
+        @apply flex;
+    }
+    .partImg {
+        @apply m-auto max-w-full p-2 rounded-2xl max-h-96;
+    }
+    .part {
+        @apply font-mono text-gray-300 bg-[#222] mt-5 rounded-2xl mr-5 text-center;
+    }
+    .partDesc {
+        @apply mt-4;
+    }
+    .partDescLine {
+        @apply mt-2;
+    }
+    .partCost {
+        @apply text-[30px] mt-3;
+    }
+    .partName {
+        @apply text-[40px];
+    }
+    .partList {
+        @apply p-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+    }
+    .partSearch {
+        @apply flex;
+    }
+    .partSearch input {
+        @apply m-auto mt-8 h-14 w-80 text-[20px] focus:outline-none text-gray-300 bg-[#222] p-4 rounded-2xl;
     }
 }
