@@ -178,7 +178,12 @@
                 "key": false
             },
             {
-                "name": "iID",
+                "name": "id",
+                "dType": "INTEGER",
+                "key": false
+            },
+            {
+                "name": "type",
                 "dType": "INTEGER",
                 "key": false
             }

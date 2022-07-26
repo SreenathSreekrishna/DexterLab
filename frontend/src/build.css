@@ -626,13 +626,13 @@ video {
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-/*parts*/
+/*parts, inventions*/
 
-.partImgDiv {
+.partImgDiv,  .invImgDiv {
   display: flex;
 }
 
-.partImg {
+.partImg,  .invImg {
   margin: auto;
   max-height: 24rem;
   max-width: 100%;
@@ -640,49 +640,50 @@ video {
   padding: 0.5rem;
 }
 
-.part {
+.part,  .invention {
   margin-top: 1.25rem;
   margin-right: 1.25rem;
   border-radius: 1rem;
   --tw-bg-opacity: 1;
   background-color: rgb(34 34 34 / var(--tw-bg-opacity));
+  padding: 1rem;
   text-align: center;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-.partDesc {
+.partDesc,  .invDesc {
   margin-top: 1rem;
 }
 
-.partDescLine {
+.partDescLine,  .invDescLine {
   margin-top: 0.5rem;
 }
 
-.partCost {
+.partCost,  .invCost {
   margin-top: 0.75rem;
   font-size: 30px;
 }
 
-.partName {
+.partName,  .invName {
   font-size: 40px;
 }
 
-.partList {
+.partList,  .invList {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   padding: 0.5rem;
 }
 
 @media (min-width: 640px) {
-  .partList {
+  .partList,  .invList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .partList {
+  .partList,  .invList {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -708,6 +709,12 @@ video {
 .partSearch input:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.invCreator {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .relative {

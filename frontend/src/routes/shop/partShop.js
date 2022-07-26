@@ -67,4 +67,5 @@ const PartShop = () => {
     </div>;
 }
 
+export {Search};
 export default PartShop;

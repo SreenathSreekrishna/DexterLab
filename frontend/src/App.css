@@ -31,29 +31,29 @@
         @apply font-mono font-bold text-7xl text-center text-gray-300 mt-20;
     }
 
-    /*parts*/
-    .partImgDiv {
+    /*parts, inventions*/
+    .partImgDiv, .invImgDiv {
         @apply flex;
     }
-    .partImg {
+    .partImg, .invImg {
         @apply m-auto max-w-full p-2 rounded-2xl max-h-96;
     }
-    .part {
-        @apply font-mono text-gray-300 bg-[#222] mt-5 rounded-2xl mr-5 text-center;
+    .part, .invention {
+        @apply font-mono text-gray-300 bg-[#222] mt-5 rounded-2xl mr-5 text-center p-4;
     }
-    .partDesc {
+    .partDesc, .invDesc {
         @apply mt-4;
     }
-    .partDescLine {
+    .partDescLine, .invDescLine {
         @apply mt-2;
     }
-    .partCost {
+    .partCost, .invCost {
         @apply text-[30px] mt-3;
     }
-    .partName {
+    .partName, .invName {
         @apply text-[40px];
     }
-    .partList {
+    .partList, .invList {
         @apply p-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
     }
     .partSearch {
@@ -61,5 +61,8 @@
     }
     .partSearch input {
         @apply m-auto mt-8 h-14 w-80 text-[20px] focus:outline-none text-gray-300 bg-[#222] p-4 rounded-2xl;
+    }
+    .invCreator {
+        @apply mt-4 text-xl;
     }
 }
