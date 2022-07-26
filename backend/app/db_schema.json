@@ -186,6 +186,11 @@
                 "name": "type",
                 "dType": "INTEGER",
                 "key": false
+            },
+            {
+                "name": "status",
+                "dType": "TEXT",
+                "key": false
             }
         ]
     }

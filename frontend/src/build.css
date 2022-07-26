@@ -570,7 +570,6 @@ video {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1.5rem;
   line-height: 2rem;
-  font-weight: 700;
 }
 
 .content {
@@ -715,6 +714,83 @@ video {
   margin-top: 1rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.styledForm {
+  margin: auto;
+  margin-top: 2.5rem;
+  height: 400px;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: rgb(55 65 81 / 0.25);
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
+@media (min-width: 450px) {
+  .styledForm {
+    width: 85%;
+  }
+}
+
+@media (min-width: 540px) {
+  .styledForm {
+    width: 75%;
+  }
+}
+
+@media (min-width: 640px) {
+  .styledForm {
+    width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .styledForm {
+    width: 40%;
+  }
+}
+
+.styledSubmit button {
+  margin: auto;
+  margin-top: 1.75rem;
+  height: 80px;
+  width: 75%;
+  border-radius: 20px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  font-size: 30px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.styledSubmit button:hover {
+  cursor: pointer;
+  background-color: rgb(24 24 27 / 0.9);
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.styledSubmit button:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
+.styledSubmit,  .styledInput {
+  display: flex;
+}
+
+.styledInput input {
+  margin: auto;
+  margin-top: 1.75rem;
+  height: 65px;
+  border-radius: 1rem;
+  background-color: rgb(24 24 27 / 0.7);
+  padding: 1rem;
+  font-size: 25px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .relative {

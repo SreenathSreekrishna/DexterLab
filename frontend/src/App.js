@@ -19,10 +19,10 @@ const App = (props) => {
         </div>
       </div>
       <div>
-        <span>11</span>
+        <span>Account</span>
         <div>
-          <span>third</span>
-          <span>third</span>
+          <span link="/login">Login</span>
+          <span link="/register">Register</span>
         </div>
       </div>
       <div>
