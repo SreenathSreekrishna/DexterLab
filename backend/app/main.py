@@ -27,4 +27,10 @@ app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_DEFAULT_SENDER'] = 'dexterlab.website@gmail.com'
 mail = Mail(app)
 
+@app.after_request
+def after_req_cors(res):
+    res.headers.set('Access-Control-Allow-Origin', 'http://localhost:3000')
+    res.headers.set('Access-Control-Allow-Credentials', 'true')
+    return res
+
 app.register_blueprint(api)

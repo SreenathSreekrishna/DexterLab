@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search } from './partShop.js';
-import server from '../../vars.js';
+import { server } from '../../vars.js';
 
 const isin = (v, s) => {
     for (var k of ['iName', 'iCreator']) {

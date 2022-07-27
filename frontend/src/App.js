@@ -7,6 +7,8 @@ import Register from './routes/login/Register.js';
 import PartShop from './routes/shop/partShop.js';
 import InvShop from './routes/shop/invShop.js';
 import NotFound from './routes/404.js';
+import Verify from './routes/login/Verify.js';
+import Dashboard from './routes/Dashboard.js';
 
 const App = (props) => {
   return <Router>
@@ -46,6 +48,8 @@ const App = (props) => {
       <Route path='/register' element={<Register />} />
       <Route path='/invShop' element={<InvShop />} />
       <Route path='/partShop' element={<PartShop />} />
+      <Route path='/verify' element={<Verify />} />
+      <Route path='/dashboard' element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Router>

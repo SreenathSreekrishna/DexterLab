@@ -1,4 +1,4 @@
-import server from '../../vars';
+import { server } from '../../vars';
 import { useState, useEffect } from 'react';
 
 const isin = (search, v) => {

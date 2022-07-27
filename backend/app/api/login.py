@@ -65,7 +65,7 @@ def register():
 @login.route('/verify/<code>')
 def verify(code):
     if len(code) != 128:
-        return jsonify(status='error', msg='invalid length')
+        return jsonify(status='error', msg='invalid code length')
     try:
         pwd = bytes.fromhex(hex(int(code, 16) ^ int(os.environ['SECRET_KEY'], 16))[2:].zfill(128))
     except ValueError:
@@ -104,16 +104,19 @@ def _login():
         if not mail:
             return jsonify(status='error', msg='No email!')
         pwd = sha512(pwd.encode()).digest()
-    db_pwd = db.select('users', constraints=['uMail', mail], columns=['uPwd'])
+    db_pwd = db.select('users', constraints=['uMail', mail], columns=['uPwd', 'uVerified'])
     if len(db_pwd) == 0:
         db.close()
         return jsonify(status='error', msg='Mail invalid!')
-    if len(db_pwd[0]) != 1:
+    if len(db_pwd[0]) != 2:
         db.close()
         return jsonify(status='error', msg='db error')
     if db_pwd[0][0] != pwd:
         db.close()
         return jsonify(status='error', msg='Incorrect password!')
+    if db_pwd[0][1] != 1:
+        db.close()
+        return jsonify(status='error', msg='Unverified!')
     user = db.select('users', constraints=['uMail', mail], columns=['uMail', 'uName', 'uBalance'])
     db.close()
     if len(user) != 1:
@@ -121,5 +124,5 @@ def _login():
     user = user[0]
     enc = int.from_bytes(pwd, 'big') ^ int(os.environ['SECRET_KEY'], 16)
     resp = make_response(jsonify(user))
-    resp.set_cookie('session', hex(enc)[2:])
+    resp.set_cookie('session', hex(enc)[2:], httponly=True, secure=True, samesite='None')
     return resp

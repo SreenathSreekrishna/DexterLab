@@ -65,11 +65,11 @@ const MobileNavItem = (props) => {
 
 const NavbarDesktop = (props) => {
   return (<div className="nav flex text-gray-300/80 font-medium space-x-4 shadow-2xl text-center bg-sky-700/30 rounded-3xl box-content p-4 h-20">
-      {props.logo && <div className="flex min-w-[10%] bg-sky-700/70 rounded-3xl hover:bg-sky-700 hover:cursor-pointer border-sky-900 border-[2px]">
-        <Link to="/" className="flex m-auto h-4/5">
+      {props.logo && <Link to="/" className="flex min-w-[10%] bg-sky-700/70 rounded-3xl hover:bg-sky-700 hover:cursor-pointer border-sky-900 border-[2px]">
+        <div className="flex m-auto h-4/5">
           <img src={props.thumbnail} className="m-auto h-full" alt="" />
-        </Link>
-      </div>}
+        </div>
+      </Link>}
       {props.children.map((child, i) => {
           return <NavItem key={i} link={child.props.children[0].props.link} listItems={child.props.children[1].props.children}>{child.props.children[0].props.children}</NavItem>;
       })}

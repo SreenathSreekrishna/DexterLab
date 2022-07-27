@@ -72,21 +72,31 @@
 
 
     .styledForm {
-        @apply text-gray-300 bg-gray-700/25 mt-10 
-        w-full xxs:w-[85%] xs:w-[75%] sm:w-1/2 md:w-2/5 
-        rounded-2xl h-[400px] m-auto;
+        @apply text-gray-300 bg-[#183859]/20 mt-10 
+        w-full xxs:w-[85%] xs:w-[75%] sm:w-[60%] md:w-[45%]
+        rounded-2xl m-auto p-10;
     }
     .styledSubmit button {
-        @apply bg-zinc-900 hover:cursor-pointer 
-        rounded-[20px] text-[30px] mt-7 m-auto w-3/4 
-        h-[80px] hover:text-white hover:bg-zinc-900/90
-        active:bg-gray-900 transition-all;
+        @apply bg-[#415daf]/20 hover:cursor-pointer 
+        rounded-[20px] text-[30px] mt-[50px] m-auto w-3/4 
+        h-[80px] hover:text-white hover:bg-[#002daf]/20
+        active:bg-[#002daf]/10 transition-all;
     }
-    .styledSubmit, .styledInput {
+    .styledSubmit, .styledInput, .invalidInput {
         @apply flex;
     }
-    .styledInput input {
-        @apply m-auto bg-zinc-900/70 rounded-2xl 
-        h-[65px] mt-7 text-[25px] outline-none p-4;
+    .styledInput input, .invalidInput input {
+        @apply m-auto bg-[#0d2540]/40 rounded-2xl 
+        h-[65px] mt-10 text-[25px] outline-none p-4;
+    }
+    .invalidInput input {
+        @apply text-red-500 caret-gray-300 !important;
+    }
+
+    .afterVerify {
+        @apply text-gray-300 font-mono m-auto mt-[10%] text-[50px] text-center;
+    }
+    .verifyWrapper {
+        @apply flex;
     }
 }
