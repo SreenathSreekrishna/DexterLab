@@ -32,7 +32,7 @@ def add_cash():
     db.close()
     return jsonify(status='done')
 
-@shopping.route('/addPartToCart', methods=['POST'])
+@shopping.route('/addToCart', methods=['POST'])
 def add_part_to_cart():
     cookie = request.cookies.get('session')
     if not cookie:
@@ -51,7 +51,7 @@ def add_part_to_cart():
         return jsonify(status='error', msg='Invalid cookie')
     db = Database(os.environ['DB_NAME'])
 
-    pExists = db.select('parts', [_type, _id])
+    pExists = db.select('parts' if _type=='pID' else 'inventions', [_type, _id])
     if len(pExists) != 1:
         db.close()
         return jsonify(status='error', msg=' doesn\'t exist!')
