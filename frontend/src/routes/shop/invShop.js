@@ -29,10 +29,12 @@ const Invention = (props) => {
         });
     }
     var isthere = false;
-    for (var v of props.added) {
-        if (props.iID === v[2] && v[3]===1) {
-            isthere = true;
-            break;
+    if (props.loggedIn) {
+        for (var v of props.added) {
+            if (props.iID === v[2] && v[3]===1) {
+                isthere = true;
+                break;
+            }
         }
     }
     return <div className='invention'>

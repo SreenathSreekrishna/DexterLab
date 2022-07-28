@@ -45,10 +45,12 @@ const Part = (props) => {
         });
     }
     var isthere = false;
-    for (var v of props.added) {
-        if (props.data.pID === v[2] && v[3]===0) {
-            isthere = true;
-            break;
+    if (props.loggedIn) {
+        for (var v of props.added) {
+            if (props.data.pID === v[2] && v[3]===0) {
+                isthere = true;
+                break;
+            }
         }
     }
     return <>{props.render ? <div className='part'>
