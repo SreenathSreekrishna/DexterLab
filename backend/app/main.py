@@ -7,7 +7,7 @@ from app.api.api import api
 from flask_mail import Mail
 from sys import argv
 
-lst = os.listdir('../frontend/build/')
+lst = os.listdir('app/build/')
 
 if '.env' not in os.listdir('app/'):
     configure(_db=False)
@@ -19,7 +19,7 @@ if DB_NAME not in os.listdir():
     print('detected that database file not in folder, configuring...')
     configure(env=False)
 
-app = Flask(__name__, static_folder='../../frontend/build/static')
+app = Flask(__name__, static_folder='build/static')
 CORS(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -44,11 +44,11 @@ def router(route):
     for val in lst:
         if route in val:
             break
-    return send_file(f'../../frontend/build/{val}')
+    return send_file(f'build/{val}')
 
 @app.route('/')
 def index():
-    with open('../frontend/build/index.html') as f:
+    with open('app/build/index.html') as f:
         data = f.read()
     return data
 
