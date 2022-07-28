@@ -28,6 +28,29 @@ const Search = (props) => {
 }
 
 const Part = (props) => {
+    const [added, setAdded] = useState(false);
+    const handler = () => {
+        const fd = new FormData;
+        fd.append('type', 'pID');
+        fd.append('id', props.data.pID);
+        fetch('/api/addToCart', {
+            method: "POST",
+            body: fd
+        }).then(res => {
+            res.json().then(data => {
+                if (data.status === 'done') {
+                    setAdded(true);
+                }
+            });
+        });
+    }
+    var isthere = false;
+    for (var v of props.added) {
+        if (props.data.pID === v[2] && v[3]===0) {
+            isthere = true;
+            break;
+        }
+    }
     return <>{props.render ? <div className='part'>
         <div className='partImgDiv'>
             <img src={`${server}/api/partImg?id=${props.data.pID}`} alt={props.data.pName} className='partImg' />
@@ -38,6 +61,9 @@ const Part = (props) => {
             <div className='partDesc'>{props.data.pDesc.split('\n').map((v,i) => {
                 return <div className='partDescLine' key={i}>{v}</div>;
             })}</div>
+            {props.loggedIn && <div className='addToCart'>
+                <button onClick={handler} disabled={added}>{added||isthere ? "Added!" : "Add To Cart"}</button>
+            </div>}
         </div>
     </div> : <></>}</>
 }
@@ -46,24 +72,33 @@ const PartList = (props) => {
     const json =  (async () => {
         return await (await fetch(`${server}/api/getParts`)).json();
     })();
-    var [data, setData] = useState([]);
+    const [data, setData] = useState([]);
     useEffect(() => {
-        json.then((dat) => {
-            setData(dat);
+        json.then((dast) => {
+            setData(dast);
+        });
+    }, []);
+    const jso =  (async () => {
+        return await (await fetch(`${server}/api/getCart`, {method: 'POST'})).json();
+    })();
+    const [dat, setDat] = useState([]);
+    useEffect(() => {
+        jso.then((daat) => {
+            setDat(daat);
         });
     }, []);
     return <div className='partList'>
         {data.map((v,i) => {
-            return <Part data={v} key={i} render={isin(props.val.toLowerCase(), v)} />;
+            return <Part data={v} key={i} render={isin(props.val.toLowerCase(), v)} added={dat} {...props} />;
         })}
     </div>;
 }
 
-const PartShop = () => {
+const PartShop = (props) => {
     const [val, setVal] = useState('');
     return <div>
-        <Search val={val} setVal={setVal} />
-        <PartList val={val} />
+        <Search val={val} setVal={setVal} {...props} />
+        <PartList val={val} {...props} />
     </div>;
 }
 

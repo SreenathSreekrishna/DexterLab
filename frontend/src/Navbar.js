@@ -27,9 +27,13 @@ const NavItem = (props) => {
     {props.listItems && (
       <div className="transition-all scale-0 group-hover:scale-100 p-1 flex flex-col space-y-0.5">
         {props.listItems.length ? (props.listItems.map((child, i) => {
-          return <NavListItem key={i} href={child.props.link}>{child.props.children}</NavListItem>;
+          if (child.type === 'span') {
+            return <NavListItem key={i} href={child.props.link}>{child.props.children}</NavListItem>;
+          } else {<></>;}
         })): (
-          <NavListItem href={props.listItems.props.link}>{props.listItems.props.children}</NavListItem>
+          props.listItems.type === 'span' ? 
+            <NavListItem href={props.listItems.props.link}>{props.listItems.props.children}</NavListItem>
+          : <></>
         )}
       </div>)
     }
@@ -57,7 +61,9 @@ const MobileNavItem = (props) => {
     }
     {(props.listItems && props.open === props.index) && <div className="transition-all flex flex-col space-y-0.5">
       {props.listItems.length ? props.listItems.map((child, i) => {
-        return <NavListItem key={i} href={child.props.link}>{child.props.children}</NavListItem>;
+        if (child.type === 'span') {
+            return <NavListItem key={i} href={child.props.link}>{child.props.children}</NavListItem>;
+        } else {return <></>;}
       }) : <NavListItem href={props.listItems.props.link}>{props.listItems.props.children}</NavListItem>}
     </div>}
   </div>;

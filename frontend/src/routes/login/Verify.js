@@ -13,9 +13,10 @@ const Verify = (props) => {
             setData(dat);
         });
     }, []);
-    return <div className="verifyWrapper">{data.status==='error' ? 
-    <div className="afterVerify">Error! <div className="reason">Reason: {data.msg}</div></div> : 
-    <div className="afterVerify">Verified!</div>}</div>;
+    return <div className="verifyWrapper">{data.status!=='error' ? 
+    <div className="afterVerify">Verified!</div> :
+    <div className="afterVerify">Error! <div className="reason">Reason: {data.msg}</div></div>
+    }</div>;
 }
 
 export default Verify;

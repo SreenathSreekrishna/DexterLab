@@ -69,6 +69,9 @@
     .invCreator {
         @apply mt-4 text-xl;
     }
+    .addToCart {
+        @apply bg-blue-900/10 hover:cursor-pointer rounded-2xl h-7 mt-4;
+    }
 
 
     .styledForm {
@@ -98,5 +101,19 @@
     }
     .verifyWrapper {
         @apply flex;
+    }
+
+    .dashboard {
+        @apply flex text-gray-300 font-mono;
+    }
+    .uInfo {
+        @apply bg-blue-900/20 m-auto mt-20 sm:w-[50%] w-full 
+        h-[200px] sm:h-[24vw] rounded-2xl text-center;
+    }
+    .uName {
+        @apply text-[40px] sm:text-[5vw] font-bold mt-5;
+    }
+    .uBalance {
+        @apply text-[25px] sm:text-[3vw];
     }
 }

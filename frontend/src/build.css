@@ -716,6 +716,17 @@ video {
   line-height: 1.75rem;
 }
 
+.addToCart {
+  margin-top: 1rem;
+  height: 1.75rem;
+  border-radius: 1rem;
+  background-color: rgb(30 58 138 / 0.1);
+}
+
+.addToCart:hover {
+  cursor: pointer;
+}
+
 .styledForm {
   margin: auto;
   margin-top: 2.5rem;
@@ -809,6 +820,52 @@ video {
 
 .verifyWrapper {
   display: flex;
+}
+
+.dashboard {
+  display: flex;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
+.uInfo {
+  margin: auto;
+  margin-top: 5rem;
+  height: 200px;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: rgb(30 58 138 / 0.2);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .uInfo {
+    height: 24vw;
+    width: 50%;
+  }
+}
+
+.uName {
+  margin-top: 1.25rem;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .uName {
+    font-size: 5vw;
+  }
+}
+
+.uBalance {
+  font-size: 25px;
+}
+
+@media (min-width: 640px) {
+  .uBalance {
+    font-size: 3vw;
+  }
 }
 
 .relative {
