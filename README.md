@@ -1,5 +1,5 @@
 # DexterLab
-A website for Dexter's lab
+A website for Dexter's lab (CW Intra)
 
 # Setup
 
